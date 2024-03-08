@@ -7,8 +7,8 @@ function onDeviceReady() {
 function capturePhoto() {
     var options = {
         quality: 80,
-        saveToPhotoAlbum:true,
-        destinationType: Camera.DestinationType.FILE_URL,
+        saveToPhotoAlbum: true,
+        destinationType: Camera.DestinationType.FILE_URI,
         encodingType: Camera.EncodingType.JPEG,
         mediaType: Camera.MediaType.PICTURE,
         correctOrientation: true
@@ -20,17 +20,11 @@ function capturePhoto() {
 function onPhotoSuccess(imageURI) {
     var photoContainer = document.getElementById('photoContainer');
     var imgElement = document.createElement('img');
-
-    var reader = new FileReader();
-    reader.onload = function (event) {
-        imgElement.src = event.target.result;
-        imgElement.style.maxWidth = '100%';
-        photoContainer.innerHTML = '';
-        photoContainer.appendChild(imgElement);
-    };
-    reader.readAsDataURL(imageURI);
+    imgElement.src = imageURI;
+    imgElement.style.maxWidth = '100%';
+    photoContainer.innerHTML = '';
+    photoContainer.appendChild(imgElement);
 }
-
 
 function onPhotoFail(message) {
     alert('Failed because: ' + message);
