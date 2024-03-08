@@ -21,17 +21,39 @@ function capturePhoto() {
 function onPhotoSuccess(imageURI) {
     var photoContainer = document.getElementById('photoContainer');
     var imgElement = document.createElement('img');
-    imgElement.src ="data:image/jpeg;base64," + imageURI;
-    console.log(imageURI);
-    console.log(imgElement);
-    var uriContainer = document.createElement('div');
-    uriContainer.textContent = "Image URI: " + imageURI;
-    photoContainer.appendChild(uriContainer);
+    imgElement.src = "data:image/jpeg;base64," + imageURI;
     imgElement.style.maxWidth = '100%';
     photoContainer.appendChild(imgElement);
+
+    // Get the current location
+    getCurrentLocation();
 }
 
 function onPhotoFail(message) {
     alert('Failed because: ' + message);
 }
 
+function getCurrentLocation() {
+    var geolocationOptions = {
+        enableHighAccuracy: true,
+        maximumAge: 3000,
+        timeout: 5000
+    };
+
+    navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError, geolocationOptions);
+}
+
+function onLocationSuccess(position) {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+
+    var locationContainer = document.createElement('div');
+    locationContainer.textContent = "Latitude: " + latitude + ", Longitude: " + longitude;
+
+    var photoContainer = document.getElementById('photoContainer');
+    photoContainer.appendChild(locationContainer);
+}
+
+function onLocationError(error) {
+    alert('Failed to get location: ' + error.message);
+}
