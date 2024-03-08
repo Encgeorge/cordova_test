@@ -8,4 +8,6 @@
     <content src="index.html" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+	<plugin name="cordova-plugin-file-transfer" spec="x.x.x" />
+
 </widget>
