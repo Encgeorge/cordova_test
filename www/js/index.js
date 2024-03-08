@@ -19,11 +19,17 @@ function capturePhoto() {
 function onPhotoSuccess(imageURI) {
     var photoContainer = document.getElementById('photoContainer');
     var imgElement = document.createElement('img');
-    imgElement.src = imageURI;
-    imgElement.style.maxWidth = '100%';
-    photoContainer.innerHTML = '';
-    photoContainer.appendChild(imgElement);
+
+    var reader = new FileReader();
+    reader.onload = function (event) {
+        imgElement.src = event.target.result;
+        imgElement.style.maxWidth = '100%';
+        photoContainer.innerHTML = '';
+        photoContainer.appendChild(imgElement);
+    };
+    reader.readAsDataURL(imageURI);
 }
+
 
 function onPhotoFail(message) {
     alert('Failed because: ' + message);
