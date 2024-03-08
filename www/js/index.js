@@ -20,7 +20,9 @@ function capturePhoto() {
 function onPhotoSuccess(imageURI) {
     var photoContainer = document.getElementById('photoContainer');
     var imgElement = document.createElement('img');
-    imgElement.src = imageURI;
+    imgElement.src ="data:image/jpeg;base64," + imageURI;
+    console.log(imageURI);
+    console.log(imgElement);
     imgElement.style.maxWidth = '100%';
     photoContainer.innerHTML = '';
     photoContainer.appendChild(imgElement);
