@@ -23,8 +23,10 @@ function onPhotoSuccess(imageURI) {
     imgElement.src ="data:image/jpeg;base64," + imageURI;
     console.log(imageURI);
     console.log(imgElement);
+    var uriContainer = document.createElement('div');
+    uriContainer.textContent = "Image URI: " + imageURI;
+    photoContainer.appendChild(uriContainer);
     imgElement.style.maxWidth = '100%';
-    photoContainer.innerHTML = '';
     photoContainer.appendChild(imgElement);
 }
 
