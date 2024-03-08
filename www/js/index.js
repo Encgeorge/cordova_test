@@ -7,7 +7,8 @@ function onDeviceReady() {
 function capturePhoto() {
     var options = {
         quality: 80,
-        destinationType: Camera.DestinationType.FILE_URI,
+        saveToPhotoAlbum:true,
+        destinationType: Camera.DestinationType.FILE_URL,
         encodingType: Camera.EncodingType.JPEG,
         mediaType: Camera.MediaType.PICTURE,
         correctOrientation: true
